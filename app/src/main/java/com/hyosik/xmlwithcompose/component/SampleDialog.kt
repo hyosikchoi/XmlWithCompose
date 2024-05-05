@@ -10,18 +10,20 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 
 @Composable
-fun SampleDialog() {
-    var openDialog by remember { mutableStateOf(true) }
+fun SampleDialog(
+    openDialog: Boolean,
+    onCloseDialog: () -> Unit,
+) {
 
     if(openDialog) {
         AlertDialog(
             onDismissRequest = {
-                openDialog = false
+                onCloseDialog()
             },
             confirmButton = {
                 Button(
                     onClick = {
-                        openDialog = false
+                        onCloseDialog()
                     }
                 ) {
                     Text(text = "확인")
@@ -30,7 +32,7 @@ fun SampleDialog() {
             dismissButton = {
                 Button(
                     onClick = {
-                        openDialog = false
+                        onCloseDialog()
                     }
                 ) {
                     Text(text = "취소")

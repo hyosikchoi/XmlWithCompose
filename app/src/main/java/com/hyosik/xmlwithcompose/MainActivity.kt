@@ -2,17 +2,10 @@ package com.hyosik.xmlwithcompose
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -37,7 +30,15 @@ class MainActivity : ComponentActivity() {
         findViewById<ComposeView>(R.id.dialog_compose).setContent {
             MaterialTheme {
                 Surface {
-                    SampleDialog()
+                    var openDialog by remember { mutableStateOf(false) }
+
+                    findViewById<AppCompatButton>(R.id.dialog_button).setOnClickListener {
+                        openDialog = true
+                    }
+
+                    SampleDialog(openDialog) {
+                        openDialog = false
+                    }
                 }
             }
         }
