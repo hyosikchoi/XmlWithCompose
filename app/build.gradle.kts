@@ -17,6 +17,14 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // 컴포즈 필수 의존성
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.2"
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
