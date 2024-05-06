@@ -1,6 +1,9 @@
 package com.hyosik.xmlwithcompose
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.widget.AppCompatButton
@@ -11,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.ComposeView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.hyosik.xmlwithcompose.component.SampleDialog
@@ -27,6 +31,8 @@ class MainActivity : ComponentActivity() {
             insets
         }
 
+        val view = findViewById<View>(R.id.water)
+
         findViewById<ComposeView>(R.id.dialog_compose).setContent {
             MaterialTheme {
                 Surface {
@@ -42,5 +48,13 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            val density = this.resources.displayMetrics.density
+            val params = view.layoutParams as ConstraintLayout.LayoutParams
+            params.height = (60 * density).toInt()
+            view.layoutParams = params
+        }, 4000)
+
     }
 }

@@ -56,4 +56,7 @@ dependencies {
 
     // Jetpack Compose
     implementation(libs.bundles.androidx.compose)
+
+    // Lottie
+    implementation(libs.airbnb.android.lottie)
 }
